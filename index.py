@@ -27,13 +27,15 @@ try:
         
         if "Нажата кнопка Down" in pressed:
             index_yellow = [i for i, game in enumerate(list_games) if game["fill"] == "yellow"][0]
-            list_games[index_yellow]["fill"] = "white"
-            list_games[index_yellow + 1]["fill"] = "yellow"
+            if index_yellow < len(list_games) - 1:
+                list_games[index_yellow]["fill"] = "white"
+                list_games[index_yellow + 1]["fill"] = "yellow"
 
         if "Нажата кнопка Up" in pressed:
             index_yellow = [i for i, game in enumerate(list_games) if game["fill"] == "yellow"][0]
-            list_games[index_yellow]["fill"] = "white"
-            list_games[index_yellow - 1]["fill"] = "yellow"
+            if index_yellow > 0:
+                list_games[index_yellow]["fill"] = "white"
+                list_games[index_yellow - 1]["fill"] = "yellow"
 
 except KeyboardInterrupt:
     print("Выход из программы")
