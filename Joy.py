@@ -13,6 +13,10 @@ class Joy:
         self.CLOCK = CLOCK
         self.DATA = DATA
 
+        self.shown = ()
+        self.pending = ()
+        self.pending_since = time.time()
+
         self.TURBO_BUTTONS = {0: (1,3), 1:(2,4)}
         self.SIMPLE_BUTTONS = {2: "Select", 3: "Start", 4: "Up", 5: "Down", 6: "Left", 7: "Right"}
 
@@ -21,7 +25,7 @@ class Joy:
 
         GPIO.setup(self.LATCH, GPIO.OUT)
         GPIO.setup(self.CLOCK, GPIO.OUT)
-        GPIO.setup(self.DATA, GPIO.INPUT, pull_up_down=GPIO.PUD_UP)
+        GPIO.setup(self.DATA, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
         self.fires = {b:self.Fire() for b in self.TURBO_BUTTONS}
 
@@ -81,21 +85,19 @@ class Joy:
        return tuple(names)
 
     def run(self):
-        shown = ()
-        pending = ()
-        pending_since = time.time()
+        
         try:
             while True:
                 state = self.pressed_button(self.reading_bits())
 
-                if state != pending:
-                    pending = state
-                    pending_since = time.time()
+                if state != self.pending:
+                    self.pending = state
+                    self.pending_since = time.time()
 
-                if pending != shown and time.time() - pending_since > self.SETTLE:
-                    shown = pending
-                    if shown:
-                        print("\a[НАЖАТО]", ", ".join(shown))
+                if self.pending != self.shown and time.time() - self.pending_since > self.SETTLE:
+                    self.shown = self.pending
+                    if self.shown:
+                        print("\a[НАЖАТО]", ", ".join(self.shown))
                     else:
                         print("Отпущено")
                 time.sleep(0.0005)
@@ -103,3 +105,18 @@ class Joy:
         except KeyboardInterrupt:
             GPIO.cleanup()
             print("Тест завершен")
+    
+    def return_pressed_button(self):
+        state = self.pressed_button(self.reading_bits())
+        
+        if state != self.pending:
+            self.pending = state
+            self.pending_since = time.time()
+        
+        if self.pending != self.shown and time.time() - self.pending_since > self.SETTLE:
+            self.shown = self.pending
+            if self.shown:
+                print("\a[НАЖАТО]", ", ".join(self.shown))
+            else:
+                 print("Отпущено")
+        return self.shown
