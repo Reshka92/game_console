@@ -1,11 +1,12 @@
 from luma.core.interface.serial import spi
 from luma.core.render import canvas
 from luma.lcd.device import ili9341
-
+from snake import Snake
 from Joy import Joy
+import time
 
 controller = Joy(5,6,13)
-
+game_snake = Snake
 serial = spi(port=0,device = 0, gpio_DC=24, gpio_RST=25)
 device = ili9341(serial)
 withX = device.width // 2
@@ -36,6 +37,19 @@ try:
             if index_yellow > 0:
                 list_games[index_yellow]["fill"] = "white"
                 list_games[index_yellow - 1]["fill"] = "yellow"
+        if "Нажата кнопка Start" in pressed:
+            index_yellow = [i for i, game in enumerate(list_games) if game["fill"] == "yellow"][0]
+            selected_game = list_games[index_yellow]["name"]
+            if selected_game == "Snake":
+                try:
+                    while True:
+                        with canvas(device ) as draw:
+                            draw.rectangle((50,50,50,50), fill="green", outline="white")
+                            tine.sleep(0.005)
+            if selected_game == "Mario":
+                //Логика марио
+                pass
+
 
 except KeyboardInterrupt:
     print("Выход из программы")
