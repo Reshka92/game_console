@@ -1,7 +1,7 @@
 from luma.core.interface.serial import spi
 from luma.core.render import canvas
 from luma.lcd.device import ili9341
-from snake import Snake
+from Snake import Snake
 from Joy import Joy
 import time
 
@@ -13,8 +13,8 @@ withX = device.width // 2
 withY = device.height // 2
 
 list_games = [
-    {"name": "Mario", "fill": "yellow"},
-    {"name": "Doom", "fill": "white"},
+    {"name": "Snake", "fill": "yellow"},
+    {"name": "Mario", "fill": "white"},
 ]
 try:
     while True:
@@ -45,9 +45,10 @@ try:
                     while True:
                         with canvas(device ) as draw:
                             draw.rectangle((50,50,50,50), fill="green", outline="white")
-                            tine.sleep(0.005)
+                            time.sleep(0.005)
+                except KeyboardInterrupt:
+                    print("Конец")
             if selected_game == "Mario":
-                //Логика марио
                 pass
 
 
