@@ -6,7 +6,6 @@ from Joy import Joy
 import time
 
 controller = Joy(5,6,13)
-game_snake = Snake(device.width, device.height)
 serial = spi(port=0,device = 0, gpio_DC=24, gpio_RST=25)
 device = ili9341(serial)
 withX = device.width // 2
@@ -43,9 +42,8 @@ try:
             if selected_game == "Snake":
                 try:
                     while True:
-                        with canvas(device ) as draw:
-                            draw.rectangle((50,50,50,50), fill="green", outline="white")
-                            time.sleep(0.005)
+                            game_snake = Snake(device.width, device.height, device)
+                            game_snake.run()
                 except KeyboardInterrupt:
                     print("Конец")
             if selected_game == "Mario":
