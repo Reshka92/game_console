@@ -15,7 +15,7 @@ class Snake:
         self.directions = [top, right, bottom, left]
         self.direction_now = right
 
-    def delete_apple 
+  
     def rutine_moove(self):
         if self.direction_now = right:
             self.positionX += 8
