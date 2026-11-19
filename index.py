@@ -6,7 +6,7 @@ from Joy import Joy
 import time
 
 controller = Joy(5,6,13)
-game_snake = Snake
+game_snake = Snake(device.width, device.height)
 serial = spi(port=0,device = 0, gpio_DC=24, gpio_RST=25)
 device = ili9341(serial)
 withX = device.width // 2
