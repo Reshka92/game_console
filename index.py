@@ -42,7 +42,7 @@ try:
             if selected_game == "Snake":
                 try:
                     while True:
-                            game_snake = Snake(device.width, device.height, device)
+                            game_snake = Snake(device)
                             game_snake.run()
                 except KeyboardInterrupt:
                     print("Конец")

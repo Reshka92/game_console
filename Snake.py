@@ -4,7 +4,7 @@ from luma.core.interface.serial import spi
 from luma.core.render import canvas
 from luma.lcd.device import ili9341
 class Snake:
-    def __init__(self, width, height, device):
+    def __init__(self, device):
         self.speed = 1
         self.time = 0.00
         self.record = 0
