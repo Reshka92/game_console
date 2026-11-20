@@ -17,7 +17,6 @@ class Snake:
         self.sizeX = 8
         self.sizeY = 8
         controller = Joy(5,6,13)
-        self.pressed = controller.return_pressed_button()
 
         self.direction_now = "right"
 
@@ -26,6 +25,8 @@ class Snake:
         self.possition_apple_y = random.randint(0, device.height)
 
     def checking_vector(self):
+        self.pressed = controller.return_pressed_button()
+
         if "Нажата кнопка Up" in self.pressed:
             self.direction_now = "up"
         if "Нажата кнопка Down" in self.pressed:
