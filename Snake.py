@@ -19,7 +19,6 @@ class Snake:
         controller = Joy(5,6,13)
         self.pressed = controller.return_pressed_button()
 
-        self.directions = ["up", "right", "down", "left"]
         self.direction_now = "right"
 
     def generated_apple(self):
@@ -56,6 +55,7 @@ class Snake:
                 with canvas(self.device) as draw:
                     # Start
                     self.checking_vector()
+                    print(self.direction_now)
                     draw.rectangle((self.positionX, self.positionY, self.positionX + self.sizeX, self.positionY + self.sizeY), fill="green", outline="white")
                     # rutine
                     self.rutine_moove()
