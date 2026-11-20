@@ -15,7 +15,7 @@ class Snake:
         self.sizeX = 8
         self.sizeY = 8
 
-        self.directions = [top, right, bottom, left]
+        self.directions = ["top", "right", "bottom", "left"]
         self.direction_now = "right"
 
     def generated_apple(self):
@@ -23,13 +23,13 @@ class Snake:
         self.possition_apple_y = random.randint(0, device.height)
         
     def rutine_moove(self):
-        if self.direction_now == right:
+        if self.direction_now == "right":
             self.positionX += 8
-        if self.direction_now == left:
+        if self.direction_now == "left":
             self.positionX -= 8
-        if self.direction_now == top:
+        if self.direction_now == "top":
             self.positionY += 8
-        if self.direction_now == bottom:
+        if self.direction_now == "bottom":
             self.positionY -= 8
 
         # if self.possition_apple_x == self.positionX and self.possition_apple_y == self.positionY:
