@@ -9,8 +9,8 @@ class Snake:
         self.time = 0.00
         self.record = 0
         # about Snake
-        self.positionX = random.randint(0, width)
-        self.positionY = random.randint(0, height)
+        self.positionX = random.randint(0, device.width)
+        self.positionY = random.randint(0, device.height)
 
         self.sizeX = 8
         self.sizeY = 8
@@ -19,8 +19,8 @@ class Snake:
         self.direction_now = "right"
 
     def generated_apple(self):
-        self.possition_apple_x = random.randint(0, width)
-        self.possition_apple_y = random.randint(0, height)
+        self.possition_apple_x = random.randint(0, device.width)
+        self.possition_apple_y = random.randint(0, device.height)
         
     def rutine_moove(self):
         if self.direction_now == right:
