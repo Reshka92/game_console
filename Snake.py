@@ -8,6 +8,7 @@ class Snake:
         self.speed = 1
         self.time = 0.00
         self.record = 0
+        self.device = device
         # about Snake
         self.positionX = random.randint(0, device.width)
         self.positionY = random.randint(0, device.height)
@@ -41,9 +42,9 @@ class Snake:
             while True:
                 with canvas(self.device) as draw:
                     # Start
-                    self.draw.rectangle((self.positionX, self.positionY, self.positionX + self.sizeX, self.positionY + self.sizeY), fill="green", outline="white")
+                    draw.rectangle((self.positionX, self.positionY, self.positionX + self.sizeX, self.positionY + self.sizeY), fill="green", outline="white")
                     # rutine
-                    rutine_moove()
+                    self.rutine_moove()
                     time.sleep(1)
         
         except KeyboardInterrupt:
