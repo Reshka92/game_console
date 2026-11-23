@@ -63,6 +63,7 @@ class Snake:
                     time.sleep(1)
         
         except KeyboardInterrupt:
+            GPIO.cleanup()
             print("END")
 
             
