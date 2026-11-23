@@ -26,7 +26,7 @@ class Snake:
 
     def checking_vector(self):
         self.pressed = self.controller.return_pressed_button()
-
+        print(self.pressed)
         if "Нажата кнопка Up" in self.pressed:
             self.direction_now = "up"
         if "Нажата кнопка Down" in self.pressed:
