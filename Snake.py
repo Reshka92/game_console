@@ -11,15 +11,15 @@ class Snake:
         self.record = 0
         self.device = device
         # about Snake
-        self.positionX = random.randint(int(device.width * 25 / 100), int (device.width-(device.width * 25 / 100)))
-        self.positionY = random.randint(int(device.width * 25 / 100), int (device.width-(device.width * 25 / 100)))
-
+        self.positionX = random.randrange(int(device.width * 25 / 100), int (device.width-(device.width * 25 / 100)),8)
+        self.positionY = random.randrange(int(device.width * 25 / 100), int (device.width-(device.height * 25 / 100)), 8)
+ 
         # Apple
 
-        self.possition_apple_x = random.randint(0, device.width)
-        self.possition_apple_y = random.randint(0, device.height)
+        self.possition_apple_x = random.randrange(0, device.width,8)
+        self.possition_apple_y = random.randrange(0, device.height,8)
 
-        
+
         self.sizeX = 8
         self.sizeY = 8
         self.controller = Joy(5,6,13)
@@ -64,6 +64,7 @@ class Snake:
                 with canvas(self.device) as draw:
                     # Start
                     self.checking_vector()
+                    print(f"Позиция змейки:{self.positionX}, {self.positionY} Позиция яблока: {self.possition_apple_x}, {self.positionY}")
                     draw.rectangle((self.positionX, self.positionY, self.positionX + self.sizeX, self.positionY + self.sizeY), fill="green", outline="white")
                     draw.rectangle((self.possition_apple_x, self.possition_apple_y, self.possition_apple_x + self.sizeX, self.possition_apple_y + self.sizeY), fill="red", outline="white")
                     self.rutine_moove()
