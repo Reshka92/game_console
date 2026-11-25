@@ -11,13 +11,13 @@ class Snake:
         self.record = 0
         self.device = device
         # about Snake
-        self.positionX = random.randrange(int(device.width * 25 / 100), int (device.width-(device.width * 25 / 100)),8)
-        self.positionY = random.randrange(int(device.width * 25 / 100), int (device.width-(device.height * 25 / 100)), 8)
+        self.positionX = random.randrange(int(self.device.width * 25 / 100), int (self.device.width-(self.device.width * 25 / 100)),8)
+        self.positionY = random.randrange(int(self.device.height * 25 / 100), int (self.device.height-(self.device.height * 25 / 100)), 8)
  
         # Apple
 
-        self.possition_apple_x = random.randrange(0, self.device.width,8)
-        self.possition_apple_y = random.randrange(0, self.device.height,8)
+        self.possition_apple_x = random.randrange(int(self.device.width * 25 / 100), int (self.device.width-(self.device.width * 25 / 100)), 8)
+        self.possition_apple_y = random.randrange(int(self.device.height * 25 / 100), int (self.device.height-(self.device.height * 25 / 100)), 8)
 
 
         self.sizeX = 8
