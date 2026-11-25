@@ -1,5 +1,6 @@
 import time
 import random
+import RPi.GPIO as GPIO
 from luma.core.interface.serial import spi
 from luma.core.render import canvas
 from luma.lcd.device import ili9341
