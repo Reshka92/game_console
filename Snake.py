@@ -43,7 +43,7 @@ class Snake:
             self.direction_now = "right"
 
     def rutine_moove(self):
-        if self.positionX and self.positionY == self.possition_apple_x and self.positionY:
+        if self.positionX == self.possition_apple_x and self.positionY == self.possition_apple_y:
             self.generated_apple()
         if self.direction_now == "right":
             self.positionX += 8
