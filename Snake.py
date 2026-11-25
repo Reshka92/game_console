@@ -63,7 +63,8 @@ class Snake:
             while True:
                 with canvas(self.device) as draw:
                     # Start
-                    self.checking_vector(self)
+                    self.checking_vector()
+                    print(f"history pos: {self.history_snake_posotion} LENGHT: {self.lenght}")
                     print(f"Позиция змейки:{self.positionX}, {self.positionY} Позиция яблока: {self.possition_apple_x}, {self.positionY}")
                     # SNAKE
                     for i in range(self.lenght):
@@ -71,7 +72,7 @@ class Snake:
                         draw.rectangle((x, y, x + self.sizeX, y + self.sizeY), fill="green", outline="white")
                     # APPLE
                     draw.rectangle((self.possition_apple_x, self.possition_apple_y, self.possition_apple_x + self.sizeX, self.possition_apple_y + self.sizeY), fill="red", outline="white")
-                    self.rutine_moove(self)
+                    self.rutine_moove()
                     self.history_snake_posotion.append((self.positionX, self.positionY))
                     time.sleep(0.25)
         
