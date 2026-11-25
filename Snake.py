@@ -13,7 +13,8 @@ class Snake:
         # about Snake
         self.positionX = random.randrange(int(self.device.width * 25 / 100), int (self.device.width-(self.device.width * 25 / 100)),8)
         self.positionY = random.randrange(int(self.device.height * 25 / 100), int (self.device.height-(self.device.height * 25 / 100)), 8)
- 
+        self.lenght = 1
+        self.history_snake_posotion = [(self.positionX, self.positionY)]
         # Apple
 
         self.possition_apple_x = random.randrange(int(self.device.width * 25 / 100), int (self.device.width-(self.device.width * 25 / 100)), 8)
@@ -29,7 +30,6 @@ class Snake:
     def generated_apple(self):
         self.possition_apple_x = random.randint(0, self.device.width)
         self.possition_apple_y = random.randint(0, self.device.height)
-
     def checking_vector(self):
         self.pressed = self.controller.return_pressed_button()
         print(self.pressed)
@@ -49,9 +49,9 @@ class Snake:
             self.positionX += 8
         if self.direction_now == "left":
             self.positionX -= 8
-        if self.direction_now == "up":
-            self.positionY += 8
         if self.direction_now == "down":
+            self.positionY += 8
+        if self.direction_now == "up":
             self.positionY -= 8
 
         # if self.possition_apple_x == self.positionX and self.possition_apple_y == self.positionY:
@@ -63,11 +63,16 @@ class Snake:
             while True:
                 with canvas(self.device) as draw:
                     # Start
-                    self.checking_vector()
+                    self.checking_vector(self)
                     print(f"Позиция змейки:{self.positionX}, {self.positionY} Позиция яблока: {self.possition_apple_x}, {self.positionY}")
-                    draw.rectangle((self.positionX, self.positionY, self.positionX + self.sizeX, self.positionY + self.sizeY), fill="green", outline="white")
+                    # SNAKE
+                    for i in range(self.lenght):
+                        x, y = self.history_snake_posotion[-i]
+                        draw.rectangle((x, y, x + self.sizeX, y + self.sizeY), fill="green", outline="white")
+                    # APPLE
                     draw.rectangle((self.possition_apple_x, self.possition_apple_y, self.possition_apple_x + self.sizeX, self.possition_apple_y + self.sizeY), fill="red", outline="white")
-                    self.rutine_moove()
+                    self.rutine_moove(self)
+                    self.history_snake_posotion.append((self.positionX, self.positionY))
                     time.sleep(0.25)
         
         except KeyboardInterrupt:
