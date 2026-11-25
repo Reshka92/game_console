@@ -27,8 +27,8 @@ class Snake:
         self.direction_now = "right"
 
     def generated_apple(self):
-        self.possition_apple_x = random.randint(0, device.width)
-        self.possition_apple_y = random.randint(0, device.height)
+        self.possition_apple_x = random.randint(0, self.device.width)
+        self.possition_apple_y = random.randint(0, self.device.height)
 
     def checking_vector(self):
         self.pressed = self.controller.return_pressed_button()
@@ -68,7 +68,7 @@ class Snake:
                     draw.rectangle((self.positionX, self.positionY, self.positionX + self.sizeX, self.positionY + self.sizeY), fill="green", outline="white")
                     draw.rectangle((self.possition_apple_x, self.possition_apple_y, self.possition_apple_x + self.sizeX, self.possition_apple_y + self.sizeY), fill="red", outline="white")
                     self.rutine_moove()
-                    time.sleep(1)
+                    time.sleep(0.25)
         
         except KeyboardInterrupt:
             GPIO.cleanup()
