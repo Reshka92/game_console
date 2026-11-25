@@ -29,8 +29,8 @@ class Snake:
         self.direction_now = "right"
 
     def generated_apple(self):
-        self.possition_apple_x = random.randrange(int(self.device.width * 25 / 100), int (self.device.width-(self.device.width * 25 / 100)), 8)
-        self.possition_apple_y = random.randrange(int(self.device.height * 25 / 100), int (self.device.height-(self.device.height * 25 / 100)), 8)
+        self.history_apple_position.append((self.possition_apple_x == random.randrange(int(self.device.width * 25 / 100), int (self.device.width-(self.device.width * 25 / 100)), 8),
+        self.possition_apple_y == random.randrange(int(self.device.height * 25 / 100), int (self.device.height-(self.device.height * 25 / 100)), 8) ))
 
 
     def checking_vector(self):
@@ -81,9 +81,10 @@ class Snake:
                     # APPLE
                     for i in range(1, len(self.history_apple_position) + 1):
                         x, y = self.history_apple_position[-i]
-                        draw.rectangle((x, y, x + self.sizeX, y + self.sizeY), fill="green", outline="white")
+                        draw.rectangle((x, y, x + self.sizeX, y + self.sizeY), fill="red", outline="white")
 
-                    self.rutine_moove()
+                    self.rutine_moove() 
+                    self.history_apple_position.append((self.possition_apple_x, self.possition_apple_y))
                     self.history_snake_posotion.append((self.positionX, self.positionY))
                     time.sleep(0.25)
         
