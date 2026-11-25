@@ -67,7 +67,7 @@ class Snake:
                     print(f"history pos: {self.history_snake_posotion} LENGHT: {self.lenght}")
                     print(f"Позиция змейки:{self.positionX}, {self.positionY} Позиция яблока: {self.possition_apple_x}, {self.positionY}")
                     # SNAKE
-                    for i in range(self.lenght):
+                    for i in range(1, self.lenght + 1):
                         x, y = self.history_snake_posotion[-i]
                         draw.rectangle((x, y, x + self.sizeX, y + self.sizeY), fill="green", outline="white")
                     # APPLE
