@@ -18,7 +18,7 @@ class Snake:
         # Apple
         self.possition_apple_x = random.randrange(int(self.device.width * 25 / 100), int (self.device.width-(self.device.width * 25 / 100)), 8)
         self.possition_apple_y = random.randrange(int(self.device.height * 25 / 100), int (self.device.height-(self.device.height * 25 / 100)), 8)
-
+        self.history_apple_position = [(self.possition_apple_x, self.possition_apple_y)]
         self.last_apple_spawn = time.monotonic()
 
         self.sizeX = 8
@@ -78,7 +78,10 @@ class Snake:
                         x, y = self.history_snake_posotion[-i]
                         draw.rectangle((x, y, x + self.sizeX, y + self.sizeY), fill="green", outline="white")
                     # APPLE
-                    draw.rectangle((self.possition_apple_x, self.possition_apple_y, self.possition_apple_x + self.sizeX, self.possition_apple_y + self.sizeY), fill="red", outline="white")
+                    for i in range(1, len(self.history_apple_position) + 2):
+                        x, y = self.history_apple_position[-i]
+                        draw.rectangle((x, y, x + self.sizeX, y + self.sizeY), fill="green", outline="white")
+
                     self.rutine_moove()
                     self.history_snake_posotion.append((self.positionX, self.positionY))
                     time.sleep(0.25)
