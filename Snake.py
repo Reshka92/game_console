@@ -16,10 +16,10 @@ class Snake:
         self.lenght = 1
         self.history_snake_posotion = [(self.positionX, self.positionY)]
         # Apple
-
         self.possition_apple_x = random.randrange(int(self.device.width * 25 / 100), int (self.device.width-(self.device.width * 25 / 100)), 8)
         self.possition_apple_y = random.randrange(int(self.device.height * 25 / 100), int (self.device.height-(self.device.height * 25 / 100)), 8)
 
+        self.last_apple_spawn = time.monotonic()
 
         self.sizeX = 8
         self.sizeY = 8
@@ -28,8 +28,10 @@ class Snake:
         self.direction_now = "right"
 
     def generated_apple(self):
-        self.possition_apple_x = random.randint(0, self.device.width)
-        self.possition_apple_y = random.randint(0, self.device.height)
+        self.possition_apple_x = random.randrange(int(self.device.width * 25 / 100), int (self.device.width-(self.device.width * 25 / 100)), 8)
+        self.possition_apple_y = random.randrange(int(self.device.height * 25 / 100), int (self.device.height-(self.device.height * 25 / 100)), 8)
+
+
     def checking_vector(self):
         self.pressed = self.controller.return_pressed_button()
         print(self.pressed)
@@ -64,6 +66,10 @@ class Snake:
             while True:
                 with canvas(self.device) as draw:
                     # Start
+                    now = time.monotonic()
+                    if now - self.last_apple_spawn >= 5:
+                        self.generated_apple()
+                        self.last_apple_spawn = now
                     self.checking_vector()
                     print(f"history pos: {self.history_snake_posotion} LENGHT: {self.lenght}")
                     print(f"Позиция змейки:{self.positionX}, {self.positionY} Позиция яблока: {self.possition_apple_x}, {self.positionY}")
