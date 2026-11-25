@@ -16,8 +16,8 @@ class Snake:
  
         # Apple
 
-        self.possition_apple_x = random.randrange(0, device.width,8)
-        self.possition_apple_y = random.randrange(0, device.height,8)
+        self.possition_apple_x = random.randrange(0, self.device.width,8)
+        self.possition_apple_y = random.randrange(0, self.device.height,8)
 
 
         self.sizeX = 8
