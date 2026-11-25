@@ -78,7 +78,7 @@ class Snake:
                         x, y = self.history_snake_posotion[-i]
                         draw.rectangle((x, y, x + self.sizeX, y + self.sizeY), fill="green", outline="white")
                     # APPLE
-                    for i in range(1, len(self.history_apple_position) + 2):
+                    for i in range(1, len(self.history_apple_position) + 1):
                         x, y = self.history_apple_position[-i]
                         draw.rectangle((x, y, x + self.sizeX, y + self.sizeY), fill="green", outline="white")
 
